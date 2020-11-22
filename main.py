@@ -1,7 +1,6 @@
 import os
 import sys
-from bot import Bot
-from board import Board
+from game import Game
 
 def greeting():
     valid = False
@@ -22,19 +21,15 @@ def greeting():
         else:
             print("Invalid input, please type y or n to indicate if you would like to start: ", end = "")
 
-def start_game(board, bot):
-    print("Beginning game now!")
+def start_game(game):
 
-    board.print_board()
+    game.board.print_board()
 
 def main():
     
     user_begins = greeting()
-
-    board = Board()
-    bot = Bot()
-
-    start_game(board, bot) 
+    game = Game(user_begins)
+    start_game(game) 
 
 if __name__=="__main__":
     main()

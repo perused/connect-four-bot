@@ -11,6 +11,28 @@ class Board:
                 [" ", " ", " ", " ", " ", " ", " "]
                 ]
 
+    def is_valid_move(self, column):
+        
+        # only one space needs to be free for it to be a valid move
+        if self.board[0][column] == " ":
+            return True
+
+        return False
+
+    def update_board(self, column, symbol):
+        
+        i = 5
+
+        while i >= 0:
+
+            if self.board[i][column] == " ":
+                self.board[i][column] = symbol
+                return True
+
+            i -= 1
+
+        return False
+
     def print_board(self):
 
         
