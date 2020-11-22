@@ -22,15 +22,19 @@ def greeting():
         else:
             print("Invalid input, please type y or n to indicate if you would like to start: ", end = "")
 
+def start_game(board, bot):
+    print("Beginning game now!")
+
+    board.print_board()
+
 def main():
     
     user_begins = greeting()
 
     board = Board()
-    board.print_board()
-
     bot = Bot(board, user_begins)
-    
+
+    start_game(board, bot) 
 
 if __name__=="__main__":
     main()
