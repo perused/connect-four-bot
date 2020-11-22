@@ -1,3 +1,5 @@
+from board import Board
+
 class Bot:
 
     def __init__(self, board, user_starts):

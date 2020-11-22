@@ -1,6 +1,7 @@
 import os
 import sys
 from bot import Bot
+from board import Board
 
 def greeting():
     valid = False
@@ -25,8 +26,10 @@ def main():
     
     user_begins = greeting()
 
-    bot = Bot("board", user_begins)
+    board = Board()
+    board.print_board()
 
+    bot = Bot(board, user_begins)
     
 
 if __name__=="__main__":
