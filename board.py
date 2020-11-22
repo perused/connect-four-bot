@@ -3,19 +3,19 @@ class Board:
     def __init__(self):
 
         self.board = [
-                [None, None, None, None, None, None, None],
-                [None, None, None, None, None, None, None],
-                [None, None, None, None, None, None, None],
-                [None, None, None, None, None, None, None],
-                [None, None, None, None, None, None, None],
-                [None, None, None, None, None, None, None]
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "],
+                [" ", " ", " ", " ", " ", " ", " "]
                 ]
 
     def print_board(self):
 
         
         i = 0
-        print()
+        print("\n| 0 | 1 | 2 | 3 | 4 | 5 | 6 |")
 
         while i < len(self.board):
 

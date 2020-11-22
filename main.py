@@ -32,7 +32,7 @@ def main():
     user_begins = greeting()
 
     board = Board()
-    bot = Bot(board, user_begins)
+    bot = Bot()
 
     start_game(board, bot) 
 
