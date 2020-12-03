@@ -8,6 +8,7 @@ class Game:
         self.user_turn = user_turn
         self.board = Board()
         self.bot = Bot()
+        self.last_move = [None, None] # x, y
 
     def next_move(self):
 
@@ -24,7 +25,9 @@ class Game:
                     if not self.board.is_valid_move(move):
                         raise Exception
 
-                    self.board.update_board(move, "X")
+                    # update last move coordinates and move on the board
+                    self.last_move[0] = move
+                    self.last_move[1] = self.board.update_board(move, "X")
                     self.user_turn = False
                     valid = True
                     return
@@ -36,7 +39,7 @@ class Game:
                     print("Invalid. Please enter 0-6 in available column.")
             
         else:
-            self.bot.make_move(self.board)
+            self.last_move = self.bot.make_move(self.board)
             self.user_turn = True
             return
 

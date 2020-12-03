@@ -30,6 +30,7 @@ class Board:
 
         return True
 
+    # returns y coordinate of the move to store as the last move
     def update_board(self, column, symbol):
         
         i = 5
@@ -38,11 +39,13 @@ class Board:
 
             if self.board[i][column] == " ":
                 self.board[i][column] = symbol
-                return True
+                return i
 
             i -= 1
 
-        return False
+        print("Error in update board")
+
+        return None
 
     def print_board(self):
 
