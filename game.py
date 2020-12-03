@@ -55,16 +55,25 @@ class Game:
 
         # scenario 1: four in a row - only need to check the surroundings of last move
 
-        # check row of last move, 3 to left and 3 to right
-        if self.check_row(symbol):
+        # check row win
+        if self.check_row_win(symbol):
             print(f"{symbol} wins!")
             return True
 
-        # check col of last move, 3 down and 3 up
+        # check column win
+        if self.check_column_win(symbol):
+            print(f"{symbol} wins!")
+            return True
 
-        # check left diag of last move, 3 leftways and 3 rightways
+        # check left diagonal win
+        if self.check_ldiag_win(symbol):
+            print(f"{symbol} wins!")
+            return True
 
-        # check right diag of last move, 3 rightways and 3 leftways
+        # check right diagonal win
+        if self.check_rdiag_win(symbol):
+            print(f"{symbol} wins!")
+            return True
 
         # scenario 2: board is full
         if self.board.is_full():
@@ -73,7 +82,7 @@ class Game:
 
         return False
 
-    def check_row(self, symbol):
+    def check_row_win(self, symbol):
 
         col = self.last_move[0]
         row = self.last_move[1]
@@ -82,10 +91,10 @@ class Game:
         leftmost = max(0, col - 4)
         rightmost = min(6, col + 4)
 
-        # print(f"Last move = {self.last_move}")
+        print(f"Last move = {self.last_move}")
 
-        for i in range(leftmost, rightmost):
-            # print(f"Checking [{row},{i}] = {self.board.board[row][i]}, symbol = {symbol}, count = {count}")
+        for i in range(leftmost, rightmost + 1):
+            print(f"Checking [{row},{i}] = {self.board.board[row][i]}, symbol = {symbol}, count = {count}")
             if self.board.board[row][i] == symbol:
                 count += 1
 
@@ -95,4 +104,16 @@ class Game:
             if count == 4:
                 return True
 
+        return False
+
+    def check_column_win(self, symbol):
+
+        return False
+    
+    def check_ldiag_win(self, symbol):
+        
+        return False
+
+    def check_rdiag_win(self, symbol):
+        
         return False

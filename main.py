@@ -31,7 +31,6 @@ def start_game(game):
     while not game_end:
 
         game.next_move()
-        # time.sleep(2)
         os.system('cls' if os.name == 'nt' else 'clear')
         game.board.print_board()
         game_end = game.is_game_over()
