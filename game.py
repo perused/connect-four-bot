@@ -44,13 +44,55 @@ class Game:
             return
 
     def is_game_over(self):
+
+    
+        # we only need to check for four in a row of the last person's turn
+        if self.user_turn:
+            symbol = "O"
         
+        else:
+            symbol = "X"
+
         # scenario 1: four in a row - only need to check the surroundings of last move
 
+        # check row of last move, 3 to left and 3 to right
+        if self.check_row(symbol):
+            print(f"{symbol} wins!")
+            return True
+
+        # check col of last move, 3 down and 3 up
+
+        # check left diag of last move, 3 leftways and 3 rightways
+
+        # check right diag of last move, 3 rightways and 3 leftways
 
         # scenario 2: board is full
         if self.board.is_full():
             print("The board is full! It's a draw!")
             return True
+
+        return False
+
+    def check_row(self, symbol):
+
+        col = self.last_move[0]
+        row = self.last_move[1]
+        count = 0
+
+        leftmost = max(0, col - 4)
+        rightmost = min(6, col + 4)
+
+        # print(f"Last move = {self.last_move}")
+
+        for i in range(leftmost, rightmost):
+            # print(f"Checking [{row},{i}] = {self.board.board[row][i]}, symbol = {symbol}, count = {count}")
+            if self.board.board[row][i] == symbol:
+                count += 1
+
+            else:
+                count = 0
+
+            if count == 4:
+                return True
 
         return False
