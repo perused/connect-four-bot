@@ -19,6 +19,17 @@ class Board:
 
         return False
 
+    def is_full(self):
+
+        i = 0
+        while i < len(self.board[0]):
+            # if even one space in the top row is empty, board is not full
+            if self.board[0][i] == " ":
+                return False
+            i += 1
+
+        return True
+
     def update_board(self, column, symbol):
         
         i = 5

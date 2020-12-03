@@ -42,8 +42,12 @@ class Game:
 
     def is_game_over(self):
         
-        # scenario 1: board is full
+        # scenario 1: four in a row - only need to check the surroundings of last move
 
-        # scenario 2: four in a row
+
+        # scenario 2: board is full
+        if self.board.is_full():
+            print("The board is full! It's a draw!")
+            return True
 
         return False
