@@ -1,4 +1,5 @@
-# from board import Board
+import random
+import time
 
 class Bot:
 
@@ -6,5 +7,7 @@ class Bot:
         pass
 
     def make_move(self, board):
-        print("Computer makes move now")
-        return
+        print("Hmm... computer thinking")
+        time.sleep(1)
+        board.update_board(random.randint(0, 6), "O")
+        
