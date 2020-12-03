@@ -9,9 +9,6 @@ class Game:
         self.board = Board()
         self.bot = Bot()
 
-    def is_game_over(self):
-        pass
-
     def next_move(self):
 
         if self.user_turn:
@@ -22,15 +19,15 @@ class Game:
                     move = int(input("Your turn: "))
                     
                     if move < 0 or move > 6:
-                        assert False
+                        raise Exception
                     
-                    valid = True
-
                     if not self.board.is_valid_move(move):
-                        assert False
+                        raise Exception
 
                     self.board.update_board(move, "X")
                     self.user_turn = False
+                    valid = True
+                    return
 
                 except KeyboardInterrupt:
                     sys.exit()
@@ -41,3 +38,12 @@ class Game:
         else:
             self.bot.make_move(self.board)
             self.user_turn = True
+            return
+
+    def is_game_over(self):
+        
+        # scenario 1: board is full
+
+        # scenario 2: four in a row
+
+        return False

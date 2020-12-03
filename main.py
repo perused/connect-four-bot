@@ -32,6 +32,7 @@ def start_game(game):
         game.next_move()
         os.system('cls' if os.name == 'nt' else 'clear')
         game.board.print_board()
+        game_end = game.is_game_over()
 
 
 def main():
