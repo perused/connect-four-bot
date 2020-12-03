@@ -23,7 +23,16 @@ def greeting():
 
 def start_game(game):
 
+    os.system('cls' if os.name == 'nt' else 'clear')
     game.board.print_board()
+    game_end = False
+
+    while not game_end:
+
+        game.next_move()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        game.board.print_board()
+
 
 def main():
     

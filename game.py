@@ -1,5 +1,6 @@
 from board import Board
 from bot import Bot
+import sys
 
 class Game:
     def __init__(self, user_turn):
@@ -11,10 +12,32 @@ class Game:
     def is_game_over(self):
         pass
 
-    def request_player_move(self):
-        
-        print("Player makes move now")
+    def next_move(self):
 
-        self.user_turn = False
+        if self.user_turn:
+            valid = False
 
-        return 
+            while not valid:
+                try:
+                    move = int(input("Your turn: "))
+                    
+                    if move < 0 or move > 6:
+                        assert False
+                    
+                    valid = True
+
+                    if not self.board.is_valid_move(move):
+                        assert False
+
+                    self.board.update_board(move, "X")
+                    self.user_turn = False
+
+                except KeyboardInterrupt:
+                    sys.exit()
+
+                except:
+                    print("Invalid. Please enter 0-6 in available column.")
+            
+        else:
+            self.bot.make_move(self.board)
+            self.user_turn = True
