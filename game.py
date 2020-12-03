@@ -91,10 +91,7 @@ class Game:
         leftmost = max(0, col - 4)
         rightmost = min(6, col + 4)
 
-        print(f"Last move = {self.last_move}")
-
         for i in range(leftmost, rightmost + 1):
-            print(f"Checking [{row},{i}] = {self.board.board[row][i]}, symbol = {symbol}, count = {count}")
             if self.board.board[row][i] == symbol:
                 count += 1
 
