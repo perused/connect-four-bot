@@ -100,6 +100,23 @@ class Game:
 
     def check_column_win(self, symbol):
 
+        col = self.last_move[0]
+        row = self.last_move[1]
+        count = 0
+
+        lowmost = max(0, col - 4)
+        topmost = min(5, col + 4)
+
+        for i in range(lowmost, topmost + 1):
+            if self.board.board[i][col] == symbol:
+                count += 1
+
+            else:
+                count = 0
+
+            if count == 4:
+                return True
+
         return False
     
     def check_ldiag_win(self, symbol):
