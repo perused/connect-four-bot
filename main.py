@@ -28,7 +28,7 @@ def start_game(game):
 
     os.system('cls' if os.name == 'nt' else 'clear')
     game.board.print_board()
-    game_end = False
+    game_end = None
 
     while not game_end:
 
@@ -36,6 +36,14 @@ def start_game(game):
         os.system('cls' if os.name == 'nt' else 'clear')
         game.board.print_board()
         game_end = game.is_game_over()
+
+    if game_end == "draw":
+        print("Game over! It's a draw!")
+
+    else:
+        print(f"Game over! {game_end} wins!")
+
+    return
 
 
 def main():

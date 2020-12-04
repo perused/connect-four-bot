@@ -57,30 +57,25 @@ class Game:
 
         # check row win
         if self.check_row_win(symbol):
-            print(f"{symbol} wins!")
-            return True
+            return symbol
 
         # check column win
         if self.check_column_win(symbol):
-            print(f"{symbol} wins!")
-            return True
+            return symbol
 
         # check left diagonal win
         if self.check_ldiag_win(symbol):
-            print(f"{symbol} wins!")
-            return True
+            return symbol
 
         # check right diagonal win
         if self.check_rdiag_win(symbol):
-            print(f"{symbol} wins!")
-            return True
+            return symbol
 
         # scenario 2: board is full
         if self.board.is_full():
-            print("The board is full! It's a draw!")
-            return True
+            return "draw"
 
-        return False
+        return None
 
     def check_row_win(self, symbol):
 
