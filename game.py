@@ -128,10 +128,7 @@ class Game:
 
         cur = self.find_ldiag(row, col)
 
-        print(f"Cur = {cur}")
         while cur[0] <= 5 and cur[1] <= 6:
-
-            print(f"Cur {cur} = {self.board.board[row][col]}, count = {count}")
 
             row = cur[0]
             col = cur[1]
@@ -161,5 +158,37 @@ class Game:
 
     # right diagonal means the highest part of the diagonal is on the right hand side
     def check_rdiag_win(self, symbol):
-        
+
+        row = self.last_move[1]
+        col = self.last_move[0]
+        count = 0
+
+        cur = self.find_rdiag(row, col)
+
+        while cur[0] <= 5 and cur[1] >= 0:
+
+            row = cur[0]
+            col = cur[1]
+
+            if self.board.board[row][col] == symbol:
+                count += 1
+
+            else:
+                count = 0
+
+            if count == 4:
+                return True
+
+            cur[0] += 1
+            cur[1] -= 1
+
         return False
+    
+    # finds the highest diagonally right point from the given coordinates
+    def find_rdiag(self, row, col):
+
+        while row > 0 and col < 6:
+            row -= 1
+            col +=1
+
+        return [row, col]

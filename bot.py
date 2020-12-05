@@ -9,7 +9,7 @@ class Bot:
     def make_move(self, board):
         valid = False
         print("Hmm... bot thinking")
-        # time.sleep(1)
+        time.sleep(1)
         
         while not valid:
             col = random.randint(0, 6)
