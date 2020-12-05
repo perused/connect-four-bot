@@ -11,10 +11,11 @@ class Board:
                 [" ", " ", " ", " ", " ", " ", " "]
                 ]
 
+    # returns the board
     def get_board(self):
         return self.board
 
-    # is a static function since various types of boards will be passed in rather than instances of boards
+    # checks if a move is valid (note, is a static function)
     def is_valid_move(board, column):
 
         # only one space needs to be free for it to be a valid move
@@ -23,6 +24,7 @@ class Board:
 
         return False
 
+    # checks if the board is full
     def is_full(board):
 
         i = 0
@@ -34,7 +36,7 @@ class Board:
 
         return True
 
-    # returns y coordinate of the move to store as the last move
+    # updates the instance of the board with the given symbol
     def update_board(self, column, symbol):
         
         i = 5
@@ -43,6 +45,7 @@ class Board:
 
             if self.board[i][column] == " ":
                 self.board[i][column] = symbol
+                # returns y coordinate of the move to store as the last move
                 return i
 
             i -= 1
@@ -51,6 +54,7 @@ class Board:
 
         return None
 
+    # updates a given board with the given symbol, (note, is a static function)
     def static_update_board(board, column, symbol):
 
         i = 5
@@ -67,7 +71,7 @@ class Board:
 
         return None
 
-
+    # prints out the instance of the board
     def print_board(self):
 
         
@@ -88,6 +92,7 @@ class Board:
 
         print()
 
+    # checks if there is a four in a row win on the given row with the given symbol
     def check_row_win(row, symbol, board):
 
         count = 0
@@ -104,6 +109,7 @@ class Board:
 
         return False
 
+    # checks if there is a four in a row win on the given column with the given symbol
     def check_column_win(col, symbol, board):
 
         count = 0
@@ -120,7 +126,7 @@ class Board:
 
         return False
     
-    # left diagonal means the highest part of the diagonal is on the left hand side
+    # checks if there is a four in a row win on the given left (high) to right (low) diagonal with the given symbol
     def check_ldiag_win(row, col, symbol, board):
 
         count = 0
@@ -155,7 +161,7 @@ class Board:
 
         return [row, col]
 
-    # right diagonal means the highest part of the diagonal is on the right hand side
+    # checks if there is a four in a row win on the given right (high) to left (low) diagonal with the given symbol
     def check_rdiag_win(row, col, symbol, board):
 
         count = 0

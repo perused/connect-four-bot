@@ -9,6 +9,7 @@ class Bot:
     def __init__(self):
         pass
 
+    # bot makes a random move next
     def random_move(self, board):
 
         valid = False
@@ -21,6 +22,7 @@ class Bot:
 
         return col
 
+    # bot determines the next best move to make
     def get_move(self, board):
 
         # moves by value go in this order:
@@ -69,6 +71,6 @@ class Bot:
         original_board = board.copy()
 
         for col in range(7):
-            pass
+            game_end = 
 
         return None

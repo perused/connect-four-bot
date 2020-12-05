@@ -3,11 +3,10 @@ import sys
 from game import Game
 import time
 
+# asks if the user would like to start or not
 def greeting():
     valid = False
  
-    # print("Welcome to the connect four bot! The bot is a command line application that takes in a number from 0-6 to identify what the last move was, where 0 is the first column and 6 is the last column. Press 'q' at any time to quit. Would you like to start the game? (y/n)", end = " ")
-
     print("Would you like to start? (y/n)", end = " ")
 
     while not valid:
@@ -24,6 +23,7 @@ def greeting():
         else:
             print("Please type y or n: ", end = "")
 
+# begins and runs the main game loop for the duration of the game
 def start_game(game):
 
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -45,12 +45,13 @@ def start_game(game):
 
     return
 
-
+# calls starter functions
 def main():
     
     user_begins = greeting()
     game = Game(user_begins)
     start_game(game) 
 
+# begins program
 if __name__=="__main__":
     main()

@@ -10,6 +10,7 @@ class Game:
         self.bot = Bot()
         self.last_move = [None, None] # x, y
 
+    # request the next move from the player or the bot
     def next_move(self):
 
         if self.user_turn:
@@ -44,7 +45,7 @@ class Game:
             self.user_turn = True
             return
 
-    # symbol of the player who just had their turn
+    # check if the game is over, by win or draw
     def is_game_over(self, board):
 
     
