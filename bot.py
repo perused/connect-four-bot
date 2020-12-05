@@ -25,6 +25,9 @@ class Bot:
     # bot determines the next best move to make
     def get_move(self, board):
 
+        print("Hmm... bot thinking")
+        time.sleep(1)
+
         # first check which columns are valid and invalid
         valid_cols = []
         invalid_cols = []
@@ -48,10 +51,8 @@ class Bot:
         if move:
             return move
 
-        # 3. need more information to decide what comes next (idea: assuming the player makes the next best move, by our own heuristic measure, we then update the board through that and then make a decision based on that in order to get more information)
-
-
-        # 4. repeat step 3, but for all these possibilities
+        # 3. need more information to decide what comes next (idea: assuming the player makes the next best move, by our own heuristic measure, we then update the board through that and then make a decision based on that in order to get more information) - i suppose the heuristic would be made up of whether we can a) win and b) block the other player
+        # 4. repeat step 3, but for all these possibilities, and so on
 
         # below code is just a random idea, probably not modular enough but will use the concept
         
