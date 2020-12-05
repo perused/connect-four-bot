@@ -43,7 +43,10 @@ class Bot:
             return move
 
         # 2. blocking the other player from getting 4 in a row on their next move
+        move = self.can_block_player(board, valid_cols)
 
+        if move:
+            return move
 
         # 3. need more information to decide what comes next (idea: assuming the player makes the next best move, by our own heuristic measure, we then update the board through that and then make a decision based on that in order to get more information)
 
@@ -69,8 +72,6 @@ class Bot:
     # if we can win on the next turn we make, we will do this move straight away
     def can_win_now(self, board, valid_cols):
         
-        board = board.copy()
-
         for col in valid_cols:
             row = Board.static_update_board(board, col, "O")
 
@@ -78,6 +79,20 @@ class Bot:
                 board[row][col] = " "
                 return col
             
+            else:
+                board[row][col] = " "
+
+        return None
+
+    def can_block_player(self, board, valid_cols):
+
+        for col in valid_cols:
+            row = Board.static_update_board(board, col, "X")
+
+            if Board.check_row_win(row, "X", board) or Board.check_column_win(col, "X", board) or Board.check_ldiag_win(row, col, "X", board) or Board.check_rdiag_win(row, col, "X", board):
+                board[row][col] = " "
+                return col
+
             else:
                 board[row][col] = " "
 
