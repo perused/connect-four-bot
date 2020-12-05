@@ -56,19 +56,19 @@ class Game:
         # scenario 1: four in a row - only need to check the surroundings of last move
 
         # check row win
-        if self.check_row_win(symbol):
+        if self.check_row_win(symbol, self.board.board):
             return symbol
 
         # check column win
-        if self.check_column_win(symbol):
+        if self.check_column_win(symbol, self.board.board):
             return symbol
 
         # check left diagonal win
-        if self.check_ldiag_win(symbol):
+        if self.check_ldiag_win(symbol, self.board.board):
             return symbol
 
         # check right diagonal win
-        if self.check_rdiag_win(symbol):
+        if self.check_rdiag_win(symbol, self.board.board):
             return symbol
 
         # scenario 2: board is full
@@ -77,7 +77,7 @@ class Game:
 
         return None
 
-    def check_row_win(self, symbol):
+    def check_row_win(self, symbol, board):
 
         col = self.last_move[0]
         row = self.last_move[1]
@@ -87,7 +87,7 @@ class Game:
         rightmost = min(6, col + 4)
 
         for i in range(leftmost, rightmost + 1):
-            if self.board.board[row][i] == symbol:
+            if board[row][i] == symbol:
                 count += 1
 
             else:
@@ -98,7 +98,7 @@ class Game:
 
         return False
 
-    def check_column_win(self, symbol):
+    def check_column_win(self, symbol, board):
 
         col = self.last_move[0]
         row = self.last_move[1]
@@ -108,7 +108,7 @@ class Game:
         topmost = min(5, col + 4)
 
         for i in range(lowmost, topmost + 1):
-            if self.board.board[i][col] == symbol:
+            if board[i][col] == symbol:
                 count += 1
 
             else:
@@ -120,7 +120,7 @@ class Game:
         return False
     
     # left diagonal means the highest part of the diagonal is on the left hand side
-    def check_ldiag_win(self, symbol):
+    def check_ldiag_win(self, symbol, board):
 
         row = self.last_move[1]
         col = self.last_move[0]
@@ -133,7 +133,7 @@ class Game:
             row = cur[0]
             col = cur[1]
 
-            if self.board.board[row][col] == symbol:
+            if board[row][col] == symbol:
                 count += 1
 
             else:
@@ -157,7 +157,7 @@ class Game:
         return [row, col]
 
     # right diagonal means the highest part of the diagonal is on the right hand side
-    def check_rdiag_win(self, symbol):
+    def check_rdiag_win(self, symbol, board):
 
         row = self.last_move[1]
         col = self.last_move[0]
@@ -170,7 +170,7 @@ class Game:
             row = cur[0]
             col = cur[1]
 
-            if self.board.board[row][col] == symbol:
+            if board[row][col] == symbol:
                 count += 1
 
             else:

@@ -7,6 +7,7 @@ class Bot:
         pass
 
     def make_move(self, board):
+        
         valid = False
         print("Hmm... bot thinking")
         time.sleep(1)
