@@ -61,8 +61,8 @@ class Board:
 
         while i >= 0:
 
-            if self.board[i][column] == " ":
-                self.board[i][column] = symbol
+            if board[i][column] == " ":
+                board[i][column] = symbol
                 return i
 
             i -= 1

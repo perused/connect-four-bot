@@ -25,9 +25,19 @@ class Bot:
     # bot determines the next best move to make
     def get_move(self, board):
 
+        # first check which columns are valid and invalid
+        valid_cols = []
+        invalid_cols = []
+
+        for col in range(7):
+            if Board.is_valid_move(board, col):
+                valid_cols.append(col)
+            else:
+                invalid_cols.append(col)
+
         # moves by value go in this order:
         # 1. getting four in a row on this move
-        move = self.can_win_now(board)
+        move = self.can_win_now(board, valid_cols)
 
         if move:
             return move
@@ -41,15 +51,6 @@ class Bot:
         # 4. repeat step 3, but for all these possibilities
 
         # below code is just a random idea, probably not modular enough but will use the concept
-
-        valid_cols = []
-        invalid_cols = []
-
-        for col in range(7):
-            if Board.is_valid_move(board, col):
-                valid_cols.append(col)
-            else:
-                invalid_cols.append(col)
         
         children = []
 
@@ -66,11 +67,18 @@ class Bot:
         return best.get_col()
 
     # if we can win on the next turn we make, we will do this move straight away
-    def can_win_now(self, board):
+    def can_win_now(self, board, valid_cols):
         
-        original_board = board.copy()
+        board = board.copy()
 
-        for col in range(7):
-            game_end = 
+        for col in valid_cols:
+            row = Board.static_update_board(board, col, "O")
+
+            if Board.check_row_win(row, "O", board) or Board.check_column_win(col, "O", board) or Board.check_ldiag_win(row, col, "O", board) or Board.check_rdiag_win(row, col, "O", board):
+                board[row][col] = " "
+                return col
+            
+            else:
+                board[row][col] = " "
 
         return None
