@@ -35,7 +35,7 @@ def start_game(game):
         game.next_move()
         os.system('cls' if os.name == 'nt' else 'clear')
         game.board.print_board()
-        game_end = game.is_game_over()
+        game_end = game.is_game_over(game.board.get_board())
 
     if game_end == "draw":
         print("Game over! It's a draw!")

@@ -1,7 +1,7 @@
 class Node:
 
     def __init__(self, board, col, parent, invalid_cols, moves_ahead):
-        self.board = board
+        self.current_board = board
         self.col = col
         self.parent = parent
         self.invalid_cols = invalid_cols
@@ -16,6 +16,7 @@ class Node:
     def get_col(self):
         return self.col
 
+    # determines how valuable making this move would be
     def determine_heuristic(self):
 
         pass

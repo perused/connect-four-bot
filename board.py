@@ -23,12 +23,12 @@ class Board:
 
         return False
 
-    def is_full(self):
+    def is_full(board):
 
         i = 0
-        while i < len(self.board[0]):
+        while i < len(board[0]):
             # if even one space in the top row is empty, board is not full
-            if self.board[0][i] == " ":
+            if board[0][i] == " ":
                 return False
             i += 1
 
@@ -50,6 +50,23 @@ class Board:
         print("Error in update board")
 
         return None
+
+    def static_update_board(board, column, symbol):
+
+        i = 5
+
+        while i >= 0:
+
+            if self.board[i][column] == " ":
+                self.board[i][column] = symbol
+                return i
+
+            i -= 1
+
+        print("Error in update board")
+
+        return None
+
 
     def print_board(self):
 

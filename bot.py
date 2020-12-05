@@ -9,19 +9,36 @@ class Bot:
     def __init__(self):
         pass
 
-    # def get_move(self, board):
+    def random_move(self, board):
 
-    #     valid = False
-    #     print("Hmm... bot thinking")
-    #     time.sleep(1)
+        valid = False
+        print("Hmm... bot thinking")
+        time.sleep(1)
         
-    #     while not valid:
-    #         col = random.randint(0, 6)
-    #         valid = Board.is_valid_move(board, col)
+        while not valid:
+            col = random.randint(0, 6)
+            valid = Board.is_valid_move(board, col)
 
-    #     return col
+        return col
 
     def get_move(self, board):
+
+        # moves by value go in this order:
+        # 1. getting four in a row on this move
+        move = self.can_win_now(board)
+
+        if move:
+            return move
+
+        # 2. blocking the other player from getting 4 in a row on their next move
+
+
+        # 3. need more information to decide what comes next (idea: assuming the player makes the next best move, by our own heuristic measure, we then update the board through that and then make a decision based on that in order to get more information)
+
+
+        # 4. repeat step 3, but for all these possibilities
+
+        # below code is just a random idea, probably not modular enough but will use the concept
 
         valid_cols = []
         invalid_cols = []
@@ -45,3 +62,13 @@ class Bot:
                 best = node
 
         return best.get_col()
+
+    # if we can win on the next turn we make, we will do this move straight away
+    def can_win_now(self, board):
+        
+        original_board = board.copy()
+
+        for col in range(7):
+            pass
+
+        return None
