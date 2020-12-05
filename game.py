@@ -44,6 +44,7 @@ class Game:
             self.user_turn = True
             return
 
+    # symbol of the player who just had their turn
     def is_game_over(self, board):
 
     
@@ -55,21 +56,23 @@ class Game:
             symbol = "X"
 
         # scenario 1: four in a row - only need to check the surroundings of last move
+        row = self.last_move[1]
+        col = self.last_move[0]
 
         # check row win
-        if self.check_row_win(symbol, board):
+        if Board.check_row_win(row, symbol, board):
             return symbol
 
         # check column win
-        if self.check_column_win(symbol, board):
+        if Board.check_column_win(col, symbol, board):
             return symbol
 
         # check left diagonal win
-        if self.check_ldiag_win(symbol, board):
+        if Board.check_ldiag_win(row, col, symbol, board):
             return symbol
 
         # check right diagonal win
-        if self.check_rdiag_win(symbol, board):
+        if Board.check_rdiag_win(row, col, symbol, board):
             return symbol
 
         # scenario 2: board is full
@@ -77,111 +80,3 @@ class Game:
             return "draw"
 
         return None
-
-    def check_row_win(self, symbol, board):
-
-        row = self.last_move[1]
-        count = 0
-
-        for i in range(7):
-            if board[row][i] == symbol:
-                count += 1
-
-            else:
-                count = 0
-
-            if count == 4:
-                return True
-
-        return False
-
-    def check_column_win(self, symbol, board):
-
-        col = self.last_move[0]
-        count = 0
-
-        for i in range(6):
-            if board[i][col] == symbol:
-                count += 1
-
-            else:
-                count = 0
-
-            if count == 4:
-                return True
-
-        return False
-    
-    # left diagonal means the highest part of the diagonal is on the left hand side
-    def check_ldiag_win(self, symbol, board):
-
-        row = self.last_move[1]
-        col = self.last_move[0]
-        count = 0
-
-        cur = self.find_ldiag(row, col)
-
-        while cur[0] <= 5 and cur[1] <= 6:
-
-            row = cur[0]
-            col = cur[1]
-
-            if board[row][col] == symbol:
-                count += 1
-
-            else:
-                count = 0
-
-            if count == 4:
-                return True
-
-            cur[0] += 1
-            cur[1] += 1
-
-        return False
-
-    # finds the highest diagonally left point from the given coordinates
-    def find_ldiag(self, row, col):
-
-        while row > 0 and col > 0:
-            row -= 1
-            col -=1
-
-        return [row, col]
-
-    # right diagonal means the highest part of the diagonal is on the right hand side
-    def check_rdiag_win(self, symbol, board):
-
-        row = self.last_move[1]
-        col = self.last_move[0]
-        count = 0
-
-        cur = self.find_rdiag(row, col)
-
-        while cur[0] <= 5 and cur[1] >= 0:
-
-            row = cur[0]
-            col = cur[1]
-
-            if board[row][col] == symbol:
-                count += 1
-
-            else:
-                count = 0
-
-            if count == 4:
-                return True
-
-            cur[0] += 1
-            cur[1] -= 1
-
-        return False
-    
-    # finds the highest diagonally right point from the given coordinates
-    def find_rdiag(self, row, col):
-
-        while row > 0 and col < 6:
-            row -= 1
-            col +=1
-
-        return [row, col]
