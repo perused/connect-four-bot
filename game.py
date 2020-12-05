@@ -22,7 +22,7 @@ class Game:
                     if move < 0 or move > 6:
                         raise Exception
                     
-                    if not self.board.is_valid_move(move):
+                    if not Board.is_valid_move(self.board.get_board(), move):
                         raise Exception
 
                     # update last move coordinates and move on the board
@@ -39,7 +39,8 @@ class Game:
                     print("Invalid. Please enter 0-6 in available column.")
             
         else:
-            self.last_move = self.bot.make_move(self.board)
+            self.last_move[0] = self.bot.get_move(self.board.get_board())
+            self.last_move[1] = self.board.update_board(self.last_move[0], "O")
             self.user_turn = True
             return
 
@@ -56,19 +57,19 @@ class Game:
         # scenario 1: four in a row - only need to check the surroundings of last move
 
         # check row win
-        if self.check_row_win(symbol, self.board.board):
+        if self.check_row_win(symbol, self.board.get_board()):
             return symbol
 
         # check column win
-        if self.check_column_win(symbol, self.board.board):
+        if self.check_column_win(symbol, self.board.get_board()):
             return symbol
 
         # check left diagonal win
-        if self.check_ldiag_win(symbol, self.board.board):
+        if self.check_ldiag_win(symbol, self.board.get_board()):
             return symbol
 
         # check right diagonal win
-        if self.check_rdiag_win(symbol, self.board.board):
+        if self.check_rdiag_win(symbol, self.board.get_board()):
             return symbol
 
         # scenario 2: board is full

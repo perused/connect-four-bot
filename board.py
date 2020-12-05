@@ -11,10 +11,14 @@ class Board:
                 [" ", " ", " ", " ", " ", " ", " "]
                 ]
 
-    def is_valid_move(self, column):
-        
+    def get_board(self):
+        return self.board
+
+    # is a static function since various types of boards will be passed in rather than instances of boards
+    def is_valid_move(board, column):
+
         # only one space needs to be free for it to be a valid move
-        if self.board[0][column] == " ":
+        if board[0][column] == " ":
             return True
 
         return False
